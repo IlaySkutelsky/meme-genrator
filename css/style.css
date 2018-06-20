@@ -1,80 +1,103 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: lato;
-    src: url('../fonts/Lato/Lato-Regular.ttf');
+  font-family: lato;
+  src: url('../fonts/Lato/Lato-Regular.ttf');
 }
 @font-face {
-    font-family: maven;
-    src: url('../fonts/Maven_Pro/MavenPro-Regular.ttf');
+  font-family: maven;
+  src: url('../fonts/Maven_Pro/MavenPro-Regular.ttf');
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
-
 html {
-    font-family: 'lato';
-    color: #4f4e4e;
-    font-size: 16px;
+  font-family: 'lato';
+  color: #4f4e4e;
+  font-size: 16px;
 }
 
 /* Helpers */
 
+.grid {
+  display: grid;
+}
+
 .clean-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .space-between {
-    justify-content: space-between;
-} 
+  justify-content: space-between;
+}
 .space-around {
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
 .align-center {
-    align-items: center;
+  align-items: center;
 }
 
 .flex-wrap {
-    flex-wrap: wrap;
-} 
+  flex-wrap: wrap;
+}
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container{
-    width: 100%;
-    margin: 0 auto;
-    position: absolute;
-    top: 50px;
+.container {
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  top: 50px;
+  text-align: center;
 }
 
 header {
-    height: 50px;
-    width: 100%;
-    align-items: center;
-    position: fixed;
-    background-color: #4f4e4e;
-    color: white;
+  z-index: 10;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  position: fixed;
+  background-color: #4f4e4e;
+  color: white;
 }
 
 .nav {
-    width: 500px;
+  width: 500px;
+}
+.filter {
+  margin: 20px 0 0 0;
+}
+.gallery {
+  border: 1px solid black;
+  margin: 20px;
+}
+.img-gallery {
+  height: 103px;
+  margin: 5px;
+}
+
+.tags {
+  width: 100%;
+}
+.tag-word {
+  margin: 5px;
 }

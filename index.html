@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Meme Generator</title>
 </head>
-<body>
+
+<body onload="init()">
     <header class="flex space-between align-center">
         <h1 class="logo">Meme Generator</h1>
         <div class="nav">
@@ -19,11 +21,25 @@
         </div>
     </header>
     <main class="container">
-        <input type="text">
+        <!-- <form class="filter" action="/action_page.php" method="get">
+            <input list="browsers" name="browser" /> -->
+        <select class="input-option" onchange="onTagCliked(this.value)">
+
+
+        </select>
+
+        <!-- </datalist>
+            <input type="submit" />
+        </form> -->
+
+
+        <!-- <input class="filter" type="text"> -->
         <div class="gallery">
-            <img src="img/002.jpg">
         </div>
         <div class="tags">
+            <ul class="keywords clean-list flex space-around">
+
+            </ul>
 
         </div>
     </main>
@@ -34,7 +50,7 @@
 
     </div>
     <footer>
-        
+
     </footer>
 
     <div class="editor hidden">
@@ -50,4 +66,5 @@
     <script src="js/memes-service.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
