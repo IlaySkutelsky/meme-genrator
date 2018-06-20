@@ -5,3 +5,15 @@ function init() {
     renderImgs(imgs)
     renderKeywords()
 }
+
+function renderImgs(imgs) {
+
+}
+
+function renderKeywords() {
+
+}
+
+function openModal(id) {
+    
+}
