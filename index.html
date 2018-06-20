@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Meme Generator</title>
 </head>
-<body>
+<body onload="init()">
     <header class="flex space-between align-center">
         <h1 class="logo">Meme Generator</h1>
         <div class="nav">
@@ -21,7 +21,7 @@
     <main class="container">
         <input type="text">
         <div class="gallery">
-            <img src="img/002.jpg">
+            <!-- <img src="img/002.jpg"> -->
         </div>
         <div class="tags">
 
@@ -38,11 +38,15 @@
     </footer>
 
     <div class="editor hidden">
-        <button>Go back</button>
-        <canvas></canvas>
-        <div class="tools"></div>
-        <button class="download"></button>
-        <button class="share"></button>
+        <div>
+            <button class="btn btn-back">Go back</button>
+        </div>
+        <canvas id="meme-canvas" width="500" height="500"></canvas>
+        <div class="tools">
+            <input class="line-input-0" type="text" placeholder="Top text" onkeyup="memeLineTyped(event)">
+            <button class="btn btn-download">download</button>
+            <button class="btn btn-share">share</button>
+        </div>
     </div>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>

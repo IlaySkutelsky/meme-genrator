@@ -32,11 +32,12 @@ var gMeme = {
     txts: [
         {
             line: 'I never eat Falafel',
-            size: 20,
+            size: 50,
             align: 'left',
-            color: 'red',
-            cordX: 0,
-            cordY: 0
+            color: 'white',
+            font: 'arial',
+            cordX: 50,
+            cordY: 60
         }
     ]
 }
@@ -50,6 +51,26 @@ var gKeywords = [{tagName: 'happy', rate: 2 },
 
 function getImgsForDisplay() {
 
-
 }
 
+function getImgById(id) {
+    return gImgs.find(function(img) {
+        return img.id === id
+    })
+}
+
+function getMemeInfo(id) {
+    return gMeme
+}
+
+function getMemeImgId() {
+    return gMeme.selectedImgId
+}
+
+function setNewMeme(id) {
+    gMeme.selectedImgId = id;
+}
+
+function setMemeLine(idx, text) {
+    gMeme.txts[idx].line = text
+}
