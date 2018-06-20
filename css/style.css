@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: lato;
+    src: url('../fonts/Lato/Lato-Regular.ttf');
+}
+@font-face {
+    font-family: maven;
+    src: url('../fonts/Maven_Pro/MavenPro-Regular.ttf');
+}
+
+body {
+    margin: 0;
+}
+
+
+html {
+    font-family: 'lato';
+    color: #4f4e4e;
+    font-size: 16px;
+}
+
+/* Helpers */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+} 
+.space-around {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+} 
+
+.hidden {
+    display: none;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50px;
+}
+
+header {
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    position: fixed;
+    background-color: #4f4e4e;
+    color: white;
+}
+
+.nav {
+    width: 500px;
+}
