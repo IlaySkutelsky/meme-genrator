@@ -15,5 +15,10 @@ function renderKeywords() {
 }
 
 function openModal(id) {
-    
+    $('.editor').toggle('hidden');
+    renderCanvas(id)
+}
+
+function renderCanvas(id) {
+
 }
