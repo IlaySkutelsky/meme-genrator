@@ -55,7 +55,7 @@ function createKeywords() {
     });
     return acc;
   }, {});
-  console.log(kerwords);
+  // console.log(kerwords);
 
   return kerwords;
 }
@@ -71,7 +71,7 @@ function getImgsForDisplay(strFliter) {
       });
     });
   }
-  console.log(imgs);
+  // console.log(imgs);
 
   return imgs;
 }

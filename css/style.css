@@ -92,10 +92,16 @@ header {
   color: white;
 }
 
+.btn-nav {
+  display: none;
+}
+.nav.open {
+  display: block;
+}
 .nav {
   width: 500px;
 }
-.filter {
+.input-option {
   margin: 20px 0 0 0;
 }
 .gallery {
@@ -131,4 +137,39 @@ header {
   right: 0;
   height: 100%;
   width: 300px;
+}
+
+@media only screen and (max-width: 780px) {
+  .logo {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 100%;
+    background-color: #4f4e4e;
+    opacity: 0.9;
+  }
+  .nav ul {
+    display: block;
+    text-align: center;
+  }
+  .nav li {
+    margin: 30px;
+  }
+  .btn-nav {
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin-right: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-top: 3px;
+  }
 }

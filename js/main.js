@@ -11,7 +11,9 @@ function init() {
 function renderImgs(imgs) {
   var strHTML = imgs.map(function(img) {
     return `
-    <img class="img-gallery" src="img/${img.id}.jpg">
+    <img class="img-gallery" onclick="openModal(${
+      img.id
+    })" src="img/${img.id}.jpg">
         `;
   });
 
@@ -32,7 +34,7 @@ function renderKeywords(keywords) {
 }
 
 function renderFilter(keywords) {
-  var strHTML = '';
+  var strHTML = '<option>All</option>';
   for (var key in keywords) {
     strHTML += `<option >${key} </option>`;
   }
@@ -41,8 +43,18 @@ function renderFilter(keywords) {
 
 function onTagCliked(strTag) {
   var imgs = getImgsForDisplay(strTag);
+  document.querySelector('.input-option').value = strTag;
   renderImgs(imgs);
 }
+
+function toggleMenu() {
+  var menu = document.querySelector('.nav');
+  menu.classList.toggle('open');
+}
+
+// function onFileInputChange(ev) {
+//   handleImageFromInput(ev, renderCanvas);
+// }
 
 function openModal(id) {
   setNewMeme(id);

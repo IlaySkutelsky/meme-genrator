@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>Meme Generator</title>
 </head>
@@ -12,16 +14,20 @@
 <body onload="init()">
     <header class="flex space-between align-center">
         <h1 class="logo">Meme Generator</h1>
-        <div class="nav">
+        <label class="btn-nav" onclick="toggleMenu() ">
+            <i class="fas fa-bars"></i>
+
+        </label>
+        <nav class="nav">
             <ul class="clean-list flex space-around">
                 <li>Gallery</li>
                 <li>About</li>
                 <li>Get in touch</li>
             </ul>
-        </div>
+        </nav>
     </header>
     <main class="container">
-        <!-- <form class="filter" action="/action_page.php" method="get">
+        <!-- <form class="input-option" action="/action_page.php" method="get">
             <input list="browsers" name="browser" /> -->
         <select class="input-option" onchange="onTagCliked(this.value)">
 
@@ -34,10 +40,11 @@
 
 
         <!-- <input class="filter" type="text"> -->
+        <input type="file" name="image" onchange="onFileInputChange(event)">
         <div class="gallery">
         </div>
         <div class="tags">
-            <ul class="keywords clean-list flex space-around">
+            <ul class="keywords clean-list flex flex-wrap space-around">
 
             </ul>
 
