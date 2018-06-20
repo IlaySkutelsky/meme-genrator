@@ -54,11 +54,15 @@
     </footer>
 
     <div class="editor hidden">
-        <button>Go back</button>
-        <canvas></canvas>
-        <div class="tools"></div>
-        <button class="download"></button>
-        <button class="share"></button>
+        <div>
+            <button class="btn btn-back">Go back</button>
+        </div>
+        <canvas id="meme-canvas" width="500" height="500"></canvas>
+        <div class="tools">
+            <input class="line-input-0" type="text" placeholder="Top text" onkeyup="memeLineTyped(event)">
+            <button class="btn btn-download">download</button>
+            <button class="btn btn-share">share</button>
+        </div>
     </div>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>

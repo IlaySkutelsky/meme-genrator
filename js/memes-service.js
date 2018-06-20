@@ -31,6 +31,21 @@ var gImgs = [
 
 var gKeywords = createKeywords(gImgs);
 
+var gMeme = {
+  selectedImgId: 5,
+  txts: [
+    {
+      line: 'I never eat Falafel',
+      size: 50,
+      align: 'left',
+      color: 'white',
+      font: 'arial',
+      cordX: 50,
+      cordY: 60
+    }
+  ]
+};
+
 function createKeywords() {
   var kerwords = gImgs.reduce(function(acc, img) {
     img.keywords.forEach(function(tag) {
@@ -61,6 +76,28 @@ function getImgsForDisplay(strFliter) {
   return imgs;
 }
 
-function getketwordsForDisplay() {
+function getkeywordsForDisplay() {
   return gKeywords;
+}
+
+function getImgById(id) {
+  return gImgs.find(function(img) {
+    return img.id === id;
+  });
+}
+
+function getMemeInfo(id) {
+  return gMeme;
+}
+
+function getMemeImgId() {
+  return gMeme.selectedImgId;
+}
+
+function setNewMeme(id) {
+  gMeme.selectedImgId = id;
+}
+
+function setMemeLine(idx, text) {
+  gMeme.txts[idx].line = text;
 }
