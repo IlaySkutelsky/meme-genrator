@@ -27,19 +27,19 @@
         </nav>
     </header>
     <main class="container">
-        <!-- <form class="input-option" action="/action_page.php" method="get">
-            <input list="browsers" name="browser" /> -->
-        <select class="input-option" onchange="onTagCliked(this.value)">
+        <form action="/action_page.php" method="get">
+            <input list="browsers" name="browser" onchange="onTagCliked(this.value)">
+            <datalist id="browsers">
+
+            </datalist>
+            <!-- <input type="submit"> -->
+        </form>
+        <!-- <select class="input-option" onchange="onTagCliked(this.value)">
 
 
-        </select>
-
-        <!-- </datalist>
-            <input type="submit" />
-        </form> -->
+        </select> -->
 
 
-        <!-- <input class="filter" type="text"> -->
         <input type="file" name="image" onchange="onFileInputChange(event)">
         <div class="gallery">
         </div>

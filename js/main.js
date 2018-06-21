@@ -5,7 +5,8 @@ function init() {
   var keywords = getkeywordsForDisplay();
   renderImgs(imgs);
   renderKeywords(keywords);
-  renderFilter(keywords);
+  // renderFilter(keywords);
+  renderInput(keywords);
 }
 
 function renderImgs(imgs) {
@@ -33,17 +34,24 @@ function renderKeywords(keywords) {
   document.querySelector('.keywords').innerHTML = strHTML;
 }
 
-function renderFilter(keywords) {
-  var strHTML = '<option>All</option>';
-  for (var key in keywords) {
-    strHTML += `<option >${key} </option>`;
-  }
-  document.querySelector('.input-option').innerHTML = strHTML;
-}
+// function renderFilter(keywords) {
+//   var strHTML = '<option>All</option>';
+//   for (var key in keywords) {
+//     strHTML += `<option >${key} </option>`;
+//   }
+//   document.querySelector('.input-option').innerHTML = strHTML;
+// }
 
+function renderInput(keywords) {
+  var strHTML = `<option value="All">`;
+  for (var key in keywords) {
+    strHTML += `<option value="${key}">`;
+  }
+  document.querySelector('#browsers').innerHTML = strHTML;
+}
 function onTagCliked(strTag) {
   var imgs = getImgsForDisplay(strTag);
-  document.querySelector('.input-option').value = strTag;
+  // document.querySelector('#browsers').value = strTag;
   renderImgs(imgs);
 }
 
