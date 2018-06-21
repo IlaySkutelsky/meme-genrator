@@ -27,6 +27,10 @@ html {
   font-size: 16px;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
 /* Helpers */
 
 .grid {
@@ -155,6 +159,17 @@ header {
   height: 100px;
   width: 100px;
   float: left;
+  opacity: 1;
+  animation: setpicture 1.5s ease;
+}
+
+@keyframes setpicture {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .keywords {
@@ -223,6 +238,21 @@ header {
   width: 100%;
   height: 100%;
   background-color: #f3f3ef;
+  animation: openModaltool 1s ease;
+}
+
+.modal {
+  animation: openModaltool 1s ease;
+}
+@keyframes openModaltool {
+  from {
+    height: 0%;
+    width: 0%;
+  }
+  to {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .tools {
