@@ -99,6 +99,7 @@ function closeModal() {
 }
 
 function renderCanvas() {
+  // debugger;
   var id = getMemeImgId();
   var canvas = document.getElementById('meme-canvas');
   var ctx = canvas.getContext('2d');
@@ -108,7 +109,7 @@ function renderCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var originalRatio = img.height / img.width;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.width * originalRatio);
-    canvas.height = canvas.width * originalRatio;
+    // canvas.height = canvas.width / originalRatio;
 
     var meme = getMemeInfo();
     meme.lines.forEach(function(line) {
