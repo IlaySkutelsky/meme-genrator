@@ -295,3 +295,36 @@ header {
     flex-direction: column;
   }
 }
+
+.contact {
+  position: relative;
+  top: 50px;
+  background-color: #4f4e4e;
+  color: white;
+  padding: 10px;
+}
+
+.contact-container {
+  margin: 0 auto;
+  text-align: left;
+  flex-direction: column;
+  width: 300px;
+}
+
+.contact-container h4 {
+  margin: 5px 0;
+}
+
+.contact-container p {
+  margin: 0;
+}
+
+.contact-container input {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.msg-body {
+  width: 100%;
+  height: 128px;
+}

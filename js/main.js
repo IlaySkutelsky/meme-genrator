@@ -236,6 +236,14 @@ function onDeleteLine(ev) {
   renderTools();
 }
 
+function sendMsg() {
+    var msgSubject = $('.msg-subject').val();
+    var msgBody = $('.msg-body').val();
+    var msgUrl = `
+            https://mail.google.com/mail/?view=cm&fs=1&to=ilay.skutelsky@gmail.com,nuritlh@gmail.com&su=${msgSubject}&body=${msgBody}
+                 `
+    window.open(msgUrl,'_blank');
+}
 // function downloadImg(elLink) {
 // var canvas = document.getElementById('meme-canvas');
 // var imgContent = canvas.toDataURL('image/jpeg');
