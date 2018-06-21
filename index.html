@@ -62,17 +62,21 @@
 
     <div class="editor hidden">
         <div>
-            <button class="btn btn-back">Go back</button>
+            <button class="btn btn-back" onclick="closeModal()">Go back</button>
         </div>
-        <canvas id="meme-canvas" width="500" height="500"></canvas>
+        <canvas id="meme-canvas" width="500" height="500" onmousedown="canvasMouseDown(event)" onmouseup="canvasMouseUp(event)"></canvas>
         <div class="tools">
-            <input class="line-input-0" type="text" placeholder="Top text" onkeyup="memeLineTyped(event)">
-            <button class="btn btn-download">download</button>
-            <button class="btn btn-share">share</button>
+
+            <button class="btn add-line-btn" onclick="onAddLine()">add line</button>
+            <div class="done-btns">
+                <button class="btn btn-download" href="#" onclick="downloadImg(this)" download="my-meme.jpg">download</button>
+                <button class="btn btn-share">share</button>
+            </div>
         </div>
     </div>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="lib/jscolor-2.0.5/jscolor.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/memes-service.js"></script>
     <script src="js/main.js"></script>

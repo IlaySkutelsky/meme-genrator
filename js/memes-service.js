@@ -33,22 +33,25 @@ var gKeywords = createKeywords(gImgs);
 
 var gMeme = {
   selectedImgId: 5,
-  txts: [
+  lines: [
     {
-      line: 'I never eat Falafel',
+      txt: 'I never eat Falafel',
       size: 50,
       align: 'left',
-      color: 'white',
-      font: 'arial',
+      color: 'ffffff',
+      font: 'impact',
+      shadow: false,
       cordX: 50,
       cordY: 60
     }
   ]
 };
 
+var gCurrMoveLineIdx
+
 function createKeywords() {
-  var kerwords = gImgs.reduce(function(acc, img) {
-    img.keywords.forEach(function(tag) {
+  var kerwords = gImgs.reduce(function (acc, img) {
+    img.keywords.forEach(function (tag) {
       if (acc[tag]) {
         acc[tag] = acc[tag] + 1;
       } else acc[tag] = 1;
@@ -65,8 +68,8 @@ function getImgsForDisplay(strFliter) {
   if (strFliter === 'All') {
     imgs = gImgs;
   } else {
-    imgs = gImgs.filter(function(img) {
-      return img.keywords.some(function(tag) {
+    imgs = gImgs.filter(function (img) {
+      return img.keywords.some(function (tag) {
         return tag === strFliter;
       });
     });
@@ -81,13 +84,17 @@ function getkeywordsForDisplay() {
 }
 
 function getImgById(id) {
-  return gImgs.find(function(img) {
+  return gImgs.find(function (img) {
     return img.id === id;
   });
 }
 
 function getMemeInfo(id) {
   return gMeme;
+}
+
+function getMemeLines() {
+  return gMeme.lines
 }
 
 function getMemeImgId() {
@@ -98,6 +105,52 @@ function setNewMeme(id) {
   gMeme.selectedImgId = id;
 }
 
+function setCurrMoveLine(lineIdx) {
+  gCurrMoveLineIdx = lineIdx;
+}
+
+function getCurrMoveLine() {
+  return gCurrMoveLineIdx
+}
+
+function setLineCords(newX, newY) {
+ gMeme.lines[gCurrMoveLineIdx].cordX = newX;
+ gMeme.lines[gCurrMoveLineIdx].cordY = newY;
+}
+
+function addLine() {
+  var newLine = {
+    txt: 'I never eat Falafel',
+    size: 50,
+    align: 'left',
+    color: 'ffffff',
+    font: 'impact',
+    cordX: 50,
+    cordY: gMeme.lines[gMeme.lines.length-1].cordY + 50
+  }
+  gMeme.lines.push(newLine)
+}
+
+function deleteLine(idx) {
+  gMeme.lines.splice(idx, 1)
+}
+
 function setMemeLine(idx, text) {
-  gMeme.txts[idx].line = text;
+  gMeme.lines[idx].txt = text;
+}
+
+function changeLineSize(idx, diff) {
+  gMeme.lines[idx].size += diff;
+}
+
+function changeFontColor(idx, color) {
+  gMeme.lines[idx].color = color;
+}
+
+function changeFont(idx, font) {
+  gMeme.lines[idx].font = font;
+}
+
+function toggleShdow(idx) {
+  gMeme.lines[idx].shadow = !gMeme.lines[idx].shadow
 }
