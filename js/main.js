@@ -61,7 +61,12 @@ function onTagCliked(strTag) {
   renderKeywords(keywords);
 }
 
-function toggleMenu() {
+function OpenNavBtn() {
+  var menu = document.querySelector('.nav');
+  menu.classList.toggle('open');
+}
+
+function closeNavBtn() {
   var menu = document.querySelector('.nav');
   menu.classList.toggle('open');
 }
@@ -71,31 +76,39 @@ function toggleMenu() {
 //   handleImageFromInput(ev, renderCanvas);
 // }
 
-function onFileInputChange(ev){
+function onFileInputChange(ev) {
   var canvas = document.getElementById('meme-canvas');
   var ctx = canvas.getContext('2d');
 
   var reader = new FileReader();
-  reader.onload = function(event){
-      var img = new Image();
-      img.onload = function(){
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      }
-      img.src = event.target.result;
-  }
-  reader.readAsDataURL(ev.target.files[0]);     
-  openModal(999)
+  reader.onload = function(event) {
+    var img = new Image();
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    img.src = event.target.result;
+  };
+  reader.readAsDataURL(ev.target.files[0]);
+  openModal(999);
 }
 
 function openModal(id) {
   setNewMeme(id);
   $('.editor').toggleClass('hidden');
+  $('.container').toggleClass('hidden');
+  $('.about').toggleClass('hidden');
+  $('.contact').toggleClass('hidden');
+  $('html').toggleClass('overflow');
   renderCanvas();
   renderTools();
 }
 
 function closeModal() {
   $('.editor').toggleClass('hidden');
+  $('.container').toggleClass('hidden');
+  $('.about').toggleClass('hidden');
+  $('.contact').toggleClass('hidden');
+  $('html').toggleClass('overflow');
 }
 
 function renderCanvas() {
@@ -237,12 +250,12 @@ function onDeleteLine(ev) {
 }
 
 function sendMsg() {
-    var msgSubject = $('.msg-subject').val();
-    var msgBody = $('.msg-body').val();
-    var msgUrl = `
+  var msgSubject = $('.msg-subject').val();
+  var msgBody = $('.msg-body').val();
+  var msgUrl = `
             https://mail.google.com/mail/?view=cm&fs=1&to=ilay.skutelsky@gmail.com,nuritlh@gmail.com&su=${msgSubject}&body=${msgBody}
-                 `
-    window.open(msgUrl,'_blank');
+                 `;
+  window.open(msgUrl, '_blank');
 }
 // function downloadImg(elLink) {
 // var canvas = document.getElementById('meme-canvas');

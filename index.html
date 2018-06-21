@@ -14,70 +14,76 @@
 <body onload="init()">
     <header class="flex space-between align-center">
         <h1 class="logo">Meme Generator</h1>
-        <label class="btn-nav" onclick="toggleMenu() ">
+        <label class="btn-nav" onclick="OpenNavBtn() ">
             <i class="fas fa-bars"></i>
 
         </label>
         <nav class="nav">
             <ul class="clean-list flex space-around">
                 <li>
-                    <a href="#">Gallery</a>
+                    <a class="nav-link js-scroll-trigger" onclick="closeNavBtn()" href="#container">Gallery</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a class="nav-link js-scroll-trigger" onclick="closeNavBtn()" href="#about">About</a>
                 </li>
                 <li>
-                    <a href="#">Get in touch</a>
+                    <a class="nav-link js-scroll-trigger" onclick="closeNavBtn()" href="#contact">Get in touch</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <main class="container">
+    <div id="container">
+        <main class="container">
 
-        <label>Get started ⇒</label>
-        <input class="input-filter" list="browsers" name="browser" onchange="onTagCliked(this.value)">
-        <datalist id="browsers">
-        </datalist>
-        <!-- keep for Ex-9 and safari -->
-        <select class="input-select" onchange="onTagCliked(this.value)">
-        </select>
+            <label>Get started ⇒</label>
+            <input class="input-filter" list="browsers" name="browser" onchange="onTagCliked(this.value)">
+            <datalist id="browsers">
+            </datalist>
+            <!-- keep for Ex-9 and safari -->
+            <select class="input-select" onchange="onTagCliked(this.value)">
+            </select>
 
 
-        <input type="file" name="image" id="file" class="inputfile" onchange="onFileInputChange(event)" />
+            <input type="file" name="image" id="file" class="inputfile" onchange="onFileInputChange(event)" />
 
-        <div class="gallery">
-        </div>
-        <div class="tags">
-            <ul class="keywords clean-list flex space-around">
-            </ul>
-            <!-- <ul class="keywords2 clean-list flex space-around">
+            <div class="gallery">
+            </div>
+            <div class="tags">
+                <ul class="keywords clean-list flex space-around">
+                </ul>
+                <!-- <ul class="keywords2 clean-list flex space-around">
 
             </ul> -->
-        </div>
-    </main>
-    <div class="about">
-        <h3>Ilay Skutelsky & Nurit Levi</h3>
-        <h4>Full-Stack Developers</h4>
-        <div class="about-us flex align-center">
-            <div class="flex">
-                <img src="img/NuritPic.jpg">
-                <img src="img/Ilay.jpeg">
             </div>
-            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla reprehenderit eum ex deserunt quod? Unde reprehenderit
-                consequuntur possimus laboriosam nulla temporibus culpa iure fugiat, quod modi quidem accusantium. Excepturi,
-                animi.
-            </div>
-        </div>
-
-
+        </main>
     </div>
-    <div class="contact">
-        <div class="contact-container">
-            <h4>Contact us!</h4>
-            <p>Wanna get in touch? Leave us a message in the contact form below</p>
-            <input class="msg-subject'" type="text" placeholder="subject">
-            <textarea class="msg-body" type="text" placeholder="Write your message here"></textarea>
-            <button class="btn submit-btn" onclick="sendMsg()">Submit</button>
+    <div id="about" class="height">
+        <div class="about">
+            <h3>Ilay Skutelsky & Nurit Levi</h3>
+            <h4>Full-Stack Developers</h4>
+            <div class="about-us flex align-center">
+                <div class="flex">
+                    <img src="img/NuritPic.jpg">
+                    <img src="img/Ilay.jpeg">
+                </div>
+                <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla reprehenderit eum ex deserunt quod? Unde
+                    reprehenderit consequuntur possimus laboriosam nulla temporibus culpa iure fugiat, quod modi quidem accusantium.
+                    Excepturi, animi.
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="contact" class="height">
+        <div class="contact">
+            <div class="contact-container">
+                <h4>Contact us!</h4>
+                <p>Wanna get in touch? Leave us a message in the contact form below</p>
+                <input class="msg-subject'" type="text" placeholder="subject">
+                <textarea class="msg-body" type="text" placeholder="Write your message here"></textarea>
+                <button class="btn submit-btn" onclick="sendMsg()">Submit</button>
+            </div>
         </div>
     </div>
     <footer>
