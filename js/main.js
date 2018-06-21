@@ -67,13 +67,29 @@ function toggleMenu() {
 }
 
 // function onFileInputChange(ev) {
+//   openModal(999)
 //   handleImageFromInput(ev, renderCanvas);
 // }
+
+function onFileInputChange(ev){
+  var canvas = document.getElementById('meme-canvas');
+  var ctx = canvas.getContext('2d');
+
+  var reader = new FileReader();
+  reader.onload = function(event){
+      var img = new Image();
+      img.onload = function(){
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+      img.src = event.target.result;
+  }
+  reader.readAsDataURL(ev.target.files[0]);     
+  openModal(999)
+}
 
 function openModal(id) {
   setNewMeme(id);
   $('.editor').toggleClass('hidden');
-  // renderTools() 
   renderCanvas();
   renderTools()
 }
@@ -82,7 +98,7 @@ function closeModal() {
   $('.editor').toggleClass('hidden');
 }
 
-function renderCanvas(id) {
+function renderCanvas() {
   var id = getMemeImgId();
   var canvas = document.getElementById('meme-canvas');
   var ctx = canvas.getContext('2d');
@@ -92,7 +108,7 @@ function renderCanvas(id) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var originalRatio = img.height / img.width;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.width * originalRatio);
-    // canvas.height = canvas.width * originalRatio;
+    canvas.height = canvas.width * originalRatio;
 
     var meme = getMemeInfo();
     meme.lines.forEach(function(line) {
