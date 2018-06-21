@@ -51,18 +51,16 @@ function createKeywords() {
     img.keywords.forEach(function(tag) {
       if (acc[tag]) {
         acc[tag] = acc[tag] + 1;
-      } else acc[tag] = 1;
+      } else acc[tag] = 10;
     });
     return acc;
   }, {});
-  // console.log(kerwords);
-
   return kerwords;
 }
 
 function getImgsForDisplay(strFliter) {
   var imgs = [];
-  if (strFliter === 'All') {
+  if (strFliter === 'All' || strFliter === '') {
     imgs = gImgs;
   } else {
     imgs = gImgs.filter(function(img) {
@@ -71,8 +69,6 @@ function getImgsForDisplay(strFliter) {
       });
     });
   }
-  // console.log(imgs);
-
   return imgs;
 }
 
@@ -80,10 +76,21 @@ function getkeywordsForDisplay() {
   return gKeywords;
 }
 
+function getFontSize(keyword) {
+  for (var key in gKeywords) {
+    if (key === keyword) return gKeywords[key] <= 30 ? gKeywords[key] : 30;
+  }
+}
 function getImgById(id) {
   return gImgs.find(function(img) {
     return img.id === id;
   });
+}
+
+function updateTagRate(strFliter) {
+  for (var key in gKeywords) {
+    if (key === strFliter) gKeywords[key]++;
+  }
 }
 
 function getMemeInfo(id) {

@@ -27,30 +27,42 @@
         </nav>
     </header>
     <main class="container">
-        <form action="/action_page.php" method="get">
-            <input list="browsers" name="browser" onchange="onTagCliked(this.value)">
-            <datalist id="browsers">
 
-            </datalist>
-            <!-- <input type="submit"> -->
-        </form>
-        <!-- <select class="input-option" onchange="onTagCliked(this.value)">
-
-
-        </select> -->
+        <label>Get started ⇒</label>
+        <input class="input-filter" list="browsers" name="browser" onchange="onTagCliked(this.value)">
+        <datalist id="browsers">
+        </datalist>
+        <!-- keep for Ex-9 and safari -->
+        <select class="input-select" onchange="onTagCliked(this.value)">
+        </select>
 
 
-        <input type="file" name="image" onchange="onFileInputChange(event)">
+        <input type="file" name="image" id="file" class="inputfile" onchange="onFileInputChange(event)" />
+
         <div class="gallery">
         </div>
         <div class="tags">
-            <ul class="keywords clean-list flex flex-wrap space-around">
-
+            <ul class="keywords clean-list flex space-around">
             </ul>
+            <!-- <ul class="keywords2 clean-list flex space-around">
 
+            </ul> -->
         </div>
     </main>
     <div class="about">
+        <h3>Ilay Skutelsky & Nurit Levi</h3>
+        <h4>Full-Stack Developers</h4>
+        <div class="about-us flex align-center">
+            <div class="flex">
+                <img src="img/NuritPic.jpg">
+                <img src="img/Ilay.jpeg">
+            </div>
+            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla reprehenderit eum ex deserunt quod? Unde reprehenderit
+                consequuntur possimus laboriosam nulla temporibus culpa iure fugiat, quod modi quidem accusantium. Excepturi,
+                animi.
+            </div>
+        </div>
+
 
     </div>
     <div class="contact">

@@ -5,7 +5,7 @@ function init() {
   var keywords = getkeywordsForDisplay();
   renderImgs(imgs);
   renderKeywords(keywords);
-  // renderFilter(keywords);
+  renderFilter(keywords);
   renderInput(keywords);
 }
 
@@ -23,24 +23,26 @@ function renderImgs(imgs) {
 
 function renderKeywords(keywords) {
   var strHTML = '';
-
   for (var key in keywords) {
-    strHTML += `<li class="tag-word" style="font-size: ${keywords[key] *
-      10}px" onclick="onTagCliked('${key}')">
+    var fontsize = getFontSize(key);
+    strHTML += `<li class="tag-word" style="font-size: ${fontsize *
+      2}px" onclick="onTagCliked('${key}')">
     ${key}
 </li>`;
   }
 
   document.querySelector('.keywords').innerHTML = strHTML;
+  // document.querySelector('.keywords2').innerHTML = strHTML;
 }
 
-// function renderFilter(keywords) {
-//   var strHTML = '<option>All</option>';
-//   for (var key in keywords) {
-//     strHTML += `<option >${key} </option>`;
-//   }
-//   document.querySelector('.input-option').innerHTML = strHTML;
-// }
+// keep for Ex-9 and safari
+function renderFilter(keywords) {
+  var strHTML = '<option>All</option>';
+  for (var key in keywords) {
+    strHTML += `<option >${key} </option>`;
+  }
+  document.querySelector('.input-select').innerHTML = strHTML;
+}
 
 function renderInput(keywords) {
   var strHTML = `<option value="All">`;
@@ -51,8 +53,12 @@ function renderInput(keywords) {
 }
 function onTagCliked(strTag) {
   var imgs = getImgsForDisplay(strTag);
-  // document.querySelector('#browsers').value = strTag;
+  updateTagRate(strTag);
+  document.querySelector('.input-filter').value = strTag;
+  document.querySelector('.input-select').value = strTag;
   renderImgs(imgs);
+  var keywords = getkeywordsForDisplay();
+  renderKeywords(keywords);
 }
 
 function toggleMenu() {

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+
+    <style>
+        svg {
+            background-image: url('img/1.jpg');
+            background-repeat: no-repeat;
+            display: block;
+            width: 70%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+
+        .hexagon {
+            position: relative;
+            width: 300px;
+            height: 173.21px;
+            background-color: #64C7CC;
+            margin: 86.60px 0;
+        }
+
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+        }
+
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 86.60px solid #64C7CC;
+        }
+
+        .hexagon:after {
+            top: 100%;
+            width: 0;
+            border-top: 86.60px solid #64C7CC;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hexagon">
+        <!-- <img src="img/1.jpg"> -->
+    </div>
+
+    <!-- <svg viewbox="-10 -2 30 14">
+        <defs>
+            <mask id="mask" x="0" y="0" width="10" height="10">
+                <rect x="-10" y="-2" width="40" height="16" fill="#fff" />
+                <polygon points="2.5 0.66 7.5 0.66 10 5 7.5 9.33 2.5 9.33 0 5" />
+            </mask>
+        </defs>
+        <rect x="-10" y="-5" width="30" height="20" mask="url(#mask)" fill="#E3DFD2" />
+    </svg> -->
+
+
+
+
+</body>
+
+</html>
