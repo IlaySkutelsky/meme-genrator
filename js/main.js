@@ -73,8 +73,13 @@ function toggleMenu() {
 function openModal(id) {
   setNewMeme(id);
   $('.editor').toggleClass('hidden');
-
+  // renderTools() 
   renderCanvas();
+  renderTools()
+}
+
+function closeModal() {
+  $('.editor').toggleClass('hidden');
 }
 
 function renderCanvas(id) {
@@ -85,25 +90,139 @@ function renderCanvas(id) {
   img.src = getImgById(id).url;
   img.onload = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var height = img.height;
-    var width = img.width;
-    var originalRatio = height / width;
+    var originalRatio = img.height / img.width;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.width * originalRatio);
+    // canvas.height = canvas.width * originalRatio;
 
     var meme = getMemeInfo();
-    meme.txts.forEach(function(txt) {
-      ctx.fillStyle = txt.color;
-      ctx.font = `${txt.size}px ${txt.font}`;
-      ctx.fillText(txt.line, txt.cordX, txt.cordY);
+    meme.lines.forEach(function(line) {
+      ctx.fillStyle = '#' + line.color;
+      ctx.font = `${line.size}px ${line.font}`;
+      if (line.shadow) {
+        ctx.shadowColor = "rgba(0,0,0,0.5)";
+        ctx.shadowBlur = 2;
+      } else {
+        ctx.shadowColor = "rgba(0,0,0,0)";
+        ctx.shadowBlur = 0;      
+      }
+      ctx.fillText(line.txt, line.cordX, line.cordY);
       ctx.lineWidth = 2;
-      ctx.strokeText(txt.line, txt.cordX, txt.cordY);
+      ctx.strokeText(line.txt, line.cordX, line.cordY);
     });
   };
 }
 
+function renderTools() {
+  var memeLines = getMemeLines()
+  var strHtmls = memeLines.map(function(line, lineIdx) {
+    return `<div class="tools-line-${lineIdx}">
+              <input class="line-input-${lineIdx}" type="text" value="${line.txt}" onkeyup="memeLineTyped(event)">
+              <button class="btn btn-font-size-up-${lineIdx}" onclick="scaleFont(1, event)">+</button>
+              <button class="btn btn-font-size-down-${lineIdx}" onclick="scaleFont(-1, event)">-</button>
+              <button class="btn btn-toggle-shadow-${lineIdx}" onclick="onToggleShadow(event)">Shadow</button>
+              <input class="jscolor color-input-${lineIdx}" value="${line.color}" onchange="onChangeFontColor(event)">
+              <select class="font-menu-${lineIdx}" onchange="onFontChange(event)">
+                  <option value="impact">Impact</option>
+                  <option value="arial">Arial</option>
+                  <option value="david">David</option>
+                  <option value="miriam">Miriam</option>
+              </select>
+              <button class="btn btn-delete-line-${lineIdx}" onclick="onDeleteLine(event)">X</button>
+            </div>`
+  })
+  var generalTools = `<button class="btn-add-line-btn" onclick="onAddLine()">add line</button>
+                    <div class="done-btns">
+                        <button class="btn btn-download" href="#" onclick="downloadImg(this)" download="my-meme.jpg">download</button>
+                        <button class="btn btn-share">share</button>
+                    </div> `
+  $('.tools').html(strHtmls.join('') + generalTools)
+  jscolor.installByClassName("jscolor");
+}
+
+function canvasMouseDown(ev) {
+  var canvas = document.getElementById('meme-canvas');
+  var ctx = canvas.getContext('2d');
+  var canvasRect = canvas.getBoundingClientRect()
+  var lines = getMemeLines()
+  var currLine = lines.findIndex(function(line) {
+    var canvasMouseX = ev.clientX - canvasRect.left
+    var canvasMouseY = ev.clientY - canvasRect.top
+    return (canvasMouseX > line.cordX &&
+      canvasMouseX < line.cordX + ctx.measureText(line.txt).width && 
+      canvasMouseY > line.cordY - line.size &&
+      canvasMouseY < line.cordY
+    )
+  })
+  setCurrMoveLine(currLine)
+  console.log(currLine);
+}
+
+function canvasMouseUp(ev) {
+  var canvas = document.getElementById('meme-canvas');
+  var canvasRect = canvas.getBoundingClientRect()
+  var canvasMouseX = ev.clientX - canvasRect.left
+  var canvasMouseY = ev.clientY - canvasRect.top
+
+  var currLine = getCurrMoveLine()
+  if (currLine !== -1) {
+    setLineCords(canvasMouseX, canvasMouseY)
+    renderCanvas()
+  }
+}
+
+function onAddLine() {
+  addLine()
+  renderTools()
+  renderCanvas()
+}
+
 function memeLineTyped(ev) {
   var newText = ev.target.value;
-  var inputIdx = ev.target.classList[0].slice(-1);
+  var inputIdx = ev.target.classList[0].slice(-1);  
   setMemeLine(inputIdx, newText);
-  renderCanvas();
+  renderCanvas()
 }
+
+function scaleFont(diff, ev) {
+  var inputIdx = ev.target.classList[1].slice(-1);
+  changeLineSize(inputIdx, diff)  
+  renderCanvas()
+}
+
+function onChangeFontColor(ev) {
+  var inputIdx = ev.target.classList[1].slice(-1);
+  var newColor = ev.target.value;
+  console.log(inputIdx, newColor);
+
+  changeFontColor(inputIdx, newColor);
+  renderCanvas()
+}
+
+function onFontChange(ev) {
+  var inputIdx = ev.target.classList[0].slice(-1);
+  var newFont = ev.target.value;
+  changeFont(inputIdx, newFont)
+  renderCanvas()
+}
+
+function onToggleShadow(ev) {
+  var lineIdx = ev.target.classList[1].slice(-1);
+  toggleShdow(lineIdx)
+  renderCanvas() 
+}
+
+function onDeleteLine(ev) {
+  var lineIdx = ev.target.classList[1].slice(-1);
+  deleteLine(lineIdx)
+  renderCanvas()
+  renderTools()
+}
+
+// function downloadImg(elLink) {
+  // var canvas = document.getElementById('meme-canvas');
+  // var imgContent = canvas.toDataURL('image/jpeg');
+  // console.log(imgContent);
+  
+  // elLink.href = imgContent
+// }
+
