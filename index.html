@@ -74,18 +74,23 @@
 
     <div class="editor hidden">
         <div>
-            <button class="btn btn-back" onclick="closeModal()">Go back</button>
+            <button class="btn btn-back" onclick="closeModal()">⇐</button>
         </div>
-        <canvas id="meme-canvas" width="500" height="500" onmousedown="canvasMouseDown(event)" onmouseup="canvasMouseUp(event)"></canvas>
-        <div class="tools">
+        <div class="flex space-evenly">
+            <div class="tools">
 
-            <button class="btn add-line-btn" onclick="onAddLine()">add line</button>
-            <div class="done-btns">
-                <button class="btn btn-download" href="#" onclick="downloadImg(this)" download="my-meme.jpg">download</button>
-                <button class="btn btn-share">share</button>
+                <button class="btn add-line-btn" onclick="onAddLine()">add line</button>
+                <div class="done-btns">
+                    <button class="btn btn-download" href="#" onclick="downloadImg(this)" download="my-meme.jpg">download</button>
+                    <button class="btn btn-share">share</button>
+                </div>
             </div>
+            <canvas id="meme-canvas" width="500" height="500" onmousedown="canvasMouseDown(event)" onmouseup="canvasMouseUp(event)"></canvas>
         </div>
     </div>
+
+
+
 
     <script src="lib/jscolor-2.0.5/jscolor.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
