@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="css/hex-grid-style.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Meme Generator</title>
 </head>
@@ -16,7 +17,6 @@
         <h1 class="logo">Meme Generator</h1>
         <label class="btn-nav" onclick="OpenNavBtn() ">
             <i class="fas fa-bars"></i>
-
         </label>
         <nav class="nav">
             <ul class="clean-list flex space-around">
@@ -45,16 +45,13 @@
 
 
             <input type="file" name="image" id="file" class="inputfile" onchange="onFileInputChange(event)" />
-
-            <div class="gallery">
-            </div>
             <div class="tags">
                 <ul class="keywords clean-list flex space-around">
                 </ul>
-                <!-- <ul class="keywords2 clean-list flex space-around">
-
-            </ul> -->
             </div>
+            <div class="gallery">
+            </div>
+
         </main>
     </div>
     <div id="about" class="height">
@@ -99,7 +96,9 @@
 
                 <button class="btn add-line-btn" onclick="onAddLine()">add line</button>
                 <div class="done-btns">
-                    <button class="btn btn-download" href="#" onclick="downloadImg(this)" download="my-meme.jpg">download</button>
+                    <button class="btn btn-download" href="#" download="my-meme.jpg">
+                        <a href="#" onclick="onDownloadClicked(this)">download</a>
+                    </button>
                     <button class="btn btn-share">share</button>
                 </div>
             </div>

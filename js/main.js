@@ -10,15 +10,20 @@ function init() {
 }
 
 function renderImgs(imgs) {
-  var strHTML = imgs.map(function(img) {
-    return `
-    <div class="img-gallery" style="background-image:url('img/${
-      img.id
-    }.jpg')" onclick="openModal(${img.id})"> </div>
-        `;
+  var strHTML = `<ul id="hexGrid">`;
+  imgs.forEach(function(img) {
+    strHTML += `
+      <li class="hex">
+      <div class="hexIn">
+        <a class="hexLink" onclick="openModal(${img.id})">
+          <img class="img-gallery" src="img/${img.id}.jpg"/>
+        </a>
+      </div>
+    </li>
+      `;
   });
-
-  document.querySelector('.gallery').innerHTML = strHTML.join('');
+  strHTML += `</ul>`;
+  document.querySelector('.gallery').innerHTML = strHTML;
 }
 
 function renderKeywords(keywords) {
@@ -32,7 +37,6 @@ function renderKeywords(keywords) {
   }
 
   document.querySelector('.keywords').innerHTML = strHTML;
-  // document.querySelector('.keywords2').innerHTML = strHTML;
 }
 
 // keep for Ex-9 and safari
@@ -162,7 +166,7 @@ function renderTools() {
   });
   var generalTools = `<button class="btn add-line-btn" onclick="onAddLine()">add line</button>
                     <div class="done-btns">
-                        <button class="btn btn-download" href="#" onclick="downloadImg(this)" download="my-meme.jpg">download</button>
+                        <button class="btn btn-download" href="#" download="my-meme.jpg"><a href="#" onclick="onDownloadClicked(this)">download</a></button>
                         <button class="btn btn-share">share</button>
                     </div> `;
   $('.tools').html(strHtmls.join('') + generalTools);
@@ -257,10 +261,6 @@ function sendMsg() {
                  `;
   window.open(msgUrl, '_blank');
 }
-// function downloadImg(elLink) {
-// var canvas = document.getElementById('meme-canvas');
-// var imgContent = canvas.toDataURL('image/jpeg');
-// console.log(imgContent);
-
-// elLink.href = imgContent
-// }
+function onDownloadClicked(elLink) {
+  downloadCanvasMeme(elLink);
+}

@@ -47,17 +47,20 @@ var gMeme = {
   ]
 };
 
-var gCurrMoveLineIdx
+var gCurrMoveLineIdx;
 
 function createKeywords() {
-  var kerwords = gImgs.reduce(function (acc, img) {
-    img.keywords.forEach(function (tag) {
+  var localKeyword = loadFromStorage('gKerwords');
+  if (localKeyword !== null) return localKeyword;
+  var kerwords = gImgs.reduce(function(acc, img) {
+    img.keywords.forEach(function(tag) {
       if (acc[tag]) {
         acc[tag] = acc[tag] + 1;
       } else acc[tag] = 10;
     });
     return acc;
   }, {});
+  saveToStorage('gKerwords', kerwords);
   return kerwords;
 }
 
@@ -66,8 +69,8 @@ function getImgsForDisplay(strFliter) {
   if (strFliter === 'All' || strFliter === '') {
     imgs = gImgs;
   } else {
-    imgs = gImgs.filter(function (img) {
-      return img.keywords.some(function (tag) {
+    imgs = gImgs.filter(function(img) {
+      return img.keywords.some(function(tag) {
         return tag === strFliter;
       });
     });
@@ -85,7 +88,7 @@ function getFontSize(keyword) {
   }
 }
 function getImgById(id) {
-  return gImgs.find(function (img) {
+  return gImgs.find(function(img) {
     return img.id === id;
   });
 }
@@ -94,6 +97,7 @@ function updateTagRate(strFliter) {
   for (var key in gKeywords) {
     if (key === strFliter) gKeywords[key]++;
   }
+  saveToStorage('gKerwords', gKeywords);
 }
 
 function getMemeInfo(id) {
@@ -101,7 +105,7 @@ function getMemeInfo(id) {
 }
 
 function getMemeLines() {
-  return gMeme.lines
+  return gMeme.lines;
 }
 
 function getMemeImgId() {
@@ -117,12 +121,12 @@ function setCurrMoveLine(lineIdx) {
 }
 
 function getCurrMoveLine() {
-  return gCurrMoveLineIdx
+  return gCurrMoveLineIdx;
 }
 
 function setLineCords(newX, newY) {
- gMeme.lines[gCurrMoveLineIdx].cordX = newX;
- gMeme.lines[gCurrMoveLineIdx].cordY = newY;
+  gMeme.lines[gCurrMoveLineIdx].cordX = newX;
+  gMeme.lines[gCurrMoveLineIdx].cordY = newY;
 }
 
 function addLine() {
@@ -133,13 +137,13 @@ function addLine() {
     color: 'ffffff',
     font: 'impact',
     cordX: 50,
-    cordY: gMeme.lines[gMeme.lines.length-1].cordY + 50
-  }
-  gMeme.lines.push(newLine)
+    cordY: gMeme.lines[gMeme.lines.length - 1].cordY + 50
+  };
+  gMeme.lines.push(newLine);
 }
 
 function deleteLine(idx) {
-  gMeme.lines.splice(idx, 1)
+  gMeme.lines.splice(idx, 1);
 }
 
 function setMemeLine(idx, text) {
@@ -159,5 +163,11 @@ function changeFont(idx, font) {
 }
 
 function toggleShdow(idx) {
-  gMeme.lines[idx].shadow = !gMeme.lines[idx].shadow
+  gMeme.lines[idx].shadow = !gMeme.lines[idx].shadow;
+}
+
+function downloadCanvasMeme(elLink) {
+  var canvas = document.getElementById('meme-canvas');
+  elLink.href = canvas.toDataURL();
+  elLink.download = 'my-meme.jpg';
 }

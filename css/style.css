@@ -159,14 +159,9 @@ header {
 }
 .img-gallery {
   cursor: pointer;
-  margin: -20px 0 0 0;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
   height: 100px;
   width: 100px;
-  float: left;
   opacity: 1;
   animation: setpicture 1.5s ease;
 }
@@ -370,5 +365,8 @@ header {
   }
   .contact-container {
     width: 90%;
+  }
+  .btn-back {
+    width: 100%;
   }
 }
