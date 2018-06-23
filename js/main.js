@@ -31,7 +31,7 @@ function renderKeywords(keywords) {
   for (var key in keywords) {
     var fontsize = getFontSize(key);
     strHTML += `<li class="tag-word" style="font-size: ${fontsize *
-      2}px" onclick="onTagCliked('${key}')">
+      2}px" onclick="onTagClicked('${key}')">
     ${key}
 </li>`;
   }
@@ -55,7 +55,7 @@ function renderInput(keywords) {
   }
   document.querySelector('#browsers').innerHTML = strHTML;
 }
-function onTagCliked(strTag) {
+function onTagClicked(strTag) {
   var imgs = getImgsForDisplay(strTag);
   updateTagRate(strTag);
   document.querySelector('.input-filter').value = strTag;
@@ -122,11 +122,12 @@ function renderCanvas() {
   var ctx = canvas.getContext('2d');
   var img = new Image();
   img.src = getImgById(id).url;
+  img.crossOrigin="anonymous";
   img.onload = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var originalRatio = img.height / img.width;
+    canvas.height = canvas.width * originalRatio;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.width * originalRatio);
-    // canvas.height = canvas.width / originalRatio;
 
     var meme = getMemeInfo();
     meme.lines.forEach(function(line) {
@@ -177,10 +178,10 @@ function canvasMouseDown(ev) {
   var canvas = document.getElementById('meme-canvas');
   var ctx = canvas.getContext('2d');
   var canvasRect = canvas.getBoundingClientRect();
+  var canvasMouseX = ev.clientX - canvasRect.left;
+  var canvasMouseY = ev.clientY - canvasRect.top;
   var lines = getMemeLines();
-  var currLine = lines.findIndex(function(line) {
-    var canvasMouseX = ev.clientX - canvasRect.left;
-    var canvasMouseY = ev.clientY - canvasRect.top;
+  var currLine = lines.find(function(line) {
     return (
       canvasMouseX > line.cordX &&
       canvasMouseX < line.cordX + ctx.measureText(line.txt).width &&
@@ -188,8 +189,12 @@ function canvasMouseDown(ev) {
       canvasMouseY < line.cordY
     );
   });
-  setCurrMoveLine(currLine);
-  console.log(currLine);
+  if (!currLine) {
+    setCurrMoveLine(null);
+    return
+  }
+  setCurrMoveLine(lines.indexOf(currLine), canvasMouseX - currLine.cordX, canvasMouseY - currLine.cordY);
+  // console.log(currLine);
 }
 
 function canvasMouseUp(ev) {
@@ -199,8 +204,8 @@ function canvasMouseUp(ev) {
   var canvasMouseY = ev.clientY - canvasRect.top;
 
   var currLine = getCurrMoveLine();
-  if (currLine !== -1) {
-    setLineCords(canvasMouseX, canvasMouseY);
+  if (currLine) {
+    setLineCords(canvasMouseX - currLine.mouseDiffX, canvasMouseY - currLine.mouseDiffY);
     renderCanvas();
   }
 }
@@ -264,3 +269,4 @@ function sendMsg() {
 function onDownloadClicked(elLink) {
   downloadCanvasMeme(elLink);
 }
+

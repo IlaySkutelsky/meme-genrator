@@ -21,6 +21,7 @@ html {
   font-family: 'lato';
   font-size: 16px;
   height: 100%;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;
@@ -92,6 +93,7 @@ a {
 }
 
 .btn {
+  cursor: pointer;
   background-color: #8db38b;
   border: none;
   color: black;
@@ -191,6 +193,13 @@ header {
 .tags {
   clear: both;
 }
+.tag-word {
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tag-word:hover {
+  text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.7);
+}
 
 .about {
   position: relative;
@@ -199,6 +208,7 @@ header {
   padding: 10px 20px 10px 20px;
   opacity: 0.7;
   height: 100%;
+  line-height: 2em;
 }
 .about h3 {
   background-color: white;
@@ -233,14 +243,17 @@ header {
 
 .modal {
   padding: 5px;
-  animation: openModaltool 1s ease;
+  animation: openModaltool 0.8s ease;
+  align-items: flex-start;
 }
 @keyframes openModaltool {
   from {
+    opacity: 0;
     height: 0%;
     width: 0%;
   }
   to {
+    opacity: 1;
     height: 100%;
     width: 100%;
   }
@@ -258,6 +271,14 @@ header {
 
 .jscolor {
   width: 5em;
+}
+
+
+.btn-back {
+  transition: 0.3s;
+}
+.btn-back:hover {
+  padding: 0 3em 0 0.5em;
 }
 
 [class*='btn-font-size'],
@@ -283,7 +304,7 @@ header {
   }
 
   .modal {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .tools {
     margin: 0 0 5px 0;
@@ -295,7 +316,7 @@ header {
   top: 50px;
   background-color: #4f4e4e;
   color: white;
-  padding: 10px;
+  padding: 20px 10px;
   height: 100%;
 }
 
