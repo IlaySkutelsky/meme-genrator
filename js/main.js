@@ -115,8 +115,9 @@ function closeModal() {
 
 function renderCanvas() {
   var canvas = document.getElementById('meme-canvas');
-  if (window.outerWidth < 500) {
-    canvas.width = window.outerWidth    
+  var body = document.querySelector('body')
+  if (body.offsetWidth < 500) {
+    canvas.width = body.offsetWidth
   }
   var id = getMemeImgId();
   var ctx = canvas.getContext('2d');

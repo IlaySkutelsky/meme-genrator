@@ -145,14 +145,18 @@
 @media (max-width: 600px) {
   /* <- 2-1  hexagons per row */
   #hexGrid {
-    padding-bottom: 11.2%;
+    padding-bottom: 8.4%;
+    width: 100%;
   }
   .hex {
-    width: 50%; /* = 100 / 3 */
+    width: 37.5%; /* = 100 / 3 */
   }
-  .hex:nth-child(3n + 3) {
+  .hex:nth-child(4n + 3) {
     /* first hexagon of even rows */
-    margin-left: 25%; /* = width of .hex / 2  to indent even rows */
+    margin-left: 18.75%; /* = width of .hex / 2  to indent even rows */
+  }
+  div.gallery {
+    margin: 10px;
   }
 }
 
