@@ -36,24 +36,6 @@ function renderKeywords(keywords) {
 </li>`;
   }
 
-  var elcrawler = document.querySelector('.marquee0');
-  console.log(elcrawler);
-  
-  elcrawler.onload = function() {
-    elcrawler.innerHTML = strHTML;
-  }
-}
-
-function renderKeywords2(keywords) {
-  var strHTML = '';
-  for (var key in keywords) {
-    var fontsize = getFontSize(key);
-    strHTML += `<li class="tag-word" style="font-size: ${fontsize *
-      2}px" onclick="onTagClicked('${key}')">
-    ${key}
-</li>`;
-  }
-
   document.querySelector('.keywords').innerHTML = strHTML;
 }
 
@@ -133,8 +115,9 @@ function closeModal() {
 
 function renderCanvas() {
   var canvas = document.getElementById('meme-canvas');
+  var body = document.querySelector('body')
   if (body.offsetWidth < 500) {
-    canvas.width = body.clientWidth
+    canvas.width = body.offsetWidth
   }
   var id = getMemeImgId();
   var ctx = canvas.getContext('2d');
