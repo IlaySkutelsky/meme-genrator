@@ -116,7 +116,7 @@ function setNewMeme(id) {
   gMeme.selectedImgId = id;
 }
 
-function setCurrMoveLine(lineIdx,mouseDiffX, mouseDiffY) {
+function setCurrMoveLine(lineIdx, mouseDiffX, mouseDiffY) {
   gCurrMoveLine.lineIdx = lineIdx;
   gCurrMoveLine.mouseDiffX = mouseDiffX;
   gCurrMoveLine.mouseDiffY = mouseDiffY;
@@ -169,7 +169,7 @@ function toggleShdow(idx) {
 }
 
 function downloadCanvasMeme(elLink) {
-  var canvas = document.getElementById('meme-canvas');
+  var canvas = document.querySelector('#meme-canvas');
   elLink.href = canvas.toDataURL();
   elLink.download = 'my-meme.jpg';
 }

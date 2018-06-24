@@ -97,7 +97,7 @@ function openModal(id) {
   $('.container').toggleClass('hidden');
   $('.about').toggleClass('hidden');
   $('.contact').toggleClass('hidden');
-  $('html').toggleClass('overflow');
+  // $('html').toggleClass('overflow');
   renderCanvasUpLoaod();
   renderTools();
 }
@@ -107,7 +107,7 @@ function closeModal() {
   $('.container').toggleClass('hidden');
   $('.about').toggleClass('hidden');
   $('.contact').toggleClass('hidden');
-  $('html').toggleClass('overflow');
+  // $('html').toggleClass('overflow');
 }
 
 function renderCanvasUpLoaod() {

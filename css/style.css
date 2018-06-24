@@ -74,9 +74,9 @@ a {
   display: none;
 }
 
-.overflow {
+/* .overflow {
   overflow-y: hidden;
-}
+} */
 .flex-center {
   display: flex;
   justify-content: center;
