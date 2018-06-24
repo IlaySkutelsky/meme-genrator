@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
+
+
     <link rel="stylesheet" href="css/hex-grid-style.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Meme Generator</title>
@@ -63,7 +65,14 @@
                     <img src="img/NuritPic.jpg">
                     <img src="img/Ilay.jpeg">
                 </div>
-                <div> Still in their Coding Academy&trade; training, this powerful and inovative duo is creating a revolution in the world of meme generators. What we decided to offer to the world is a fast, accesible, easy-to-use free meme generator that enables anyone to upload images or use the well-known template ones, add text to them in different fonts, sizes and colors, and doing all that on our fun and minimalistic user interface. The website that the world of memes have been waiting for? probably, but there's more. Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quasi praesentium distinctio vero blanditiis nobis debitis quibusdam. Reprehenderit sequi laudantium facilis placeat facere voluptates repellendus, aspernatur quam, minus, esse nobis.	
+                <div> Still in their Coding Academy&trade; training, this powerful and inovative duo is creating a revolution in
+                    the world of meme generators. What we decided to offer to the world is a fast, accesible, easy-to-use
+                    free meme generator that enables anyone to upload images or use the well-known template ones, add text
+                    to them in different fonts, sizes and colors, and doing all that on our fun and minimalistic user interface.
+                    The website that the world of memes have been waiting for? probably, but there's more. Lorem ipsum dolor
+                    sit amet consectetur adipisicing elit. Exercitationem quasi praesentium distinctio vero blanditiis nobis
+                    debitis quibusdam. Reprehenderit sequi laudantium facilis placeat facere voluptates repellendus, aspernatur
+                    quam, minus, esse nobis.
                 </div>
             </div>
 
@@ -94,19 +103,24 @@
 
                 <button class="btn add-line-btn" onclick="onAddLine()">add line</button>
                 <div class="done-btns">
-                    <button class="btn btn-download" href="#" download="my-meme.jpg">
-                        <a href="#" onclick="onDownloadClicked(this)">download</a>
-                    </button>
-                    <button class="btn btn-share">share</button>
+                    <!-- <button class="btn btn-download" href="#" download="my-meme.jpg">
+                        <a href="#" class="fas fa-download" onclick="onDownloadClicked(this)"></a>
+                    </button> -->
+                    <!-- <button class="btn btn-share">share</button> -->
+                    <div id="fb-root"></div>
+                    <div class="share-container"></div>
                 </div>
             </div>
-            <canvas id="meme-canvas" width="500" height="500" onmousedown="canvasMouseDown(event)" onmouseup="canvasMouseUp(event)"></canvas>
+
+            <canvas id="meme-canvas" class="canvas" width="500" height="500" onmousedown="canvasMouseDown(event)" onmouseup="canvasMouseUp(event)"></canvas>
+            <div class="share-container"></div>
+
         </div>
     </div>
 
 
 
-
+    <script src="js/upload-service.js"></script>
     <script src="lib/jscolor-2.0.5/jscolor.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="js/utils.js"></script>

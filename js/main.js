@@ -75,11 +75,6 @@ function closeNavBtn() {
   menu.classList.toggle('open');
 }
 
-// function onFileInputChange(ev) {
-//   openModal(999)
-//   handleImageFromInput(ev, renderCanvas);
-// }
-
 function onFileInputChange(ev) {
   var canvas = document.getElementById('meme-canvas');
   var ctx = canvas.getContext('2d');
@@ -105,7 +100,7 @@ function openModal(id) {
   $('.about').toggleClass('hidden');
   $('.contact').toggleClass('hidden');
   $('html').toggleClass('overflow');
-  renderCanvas();
+  renderCanvasUpLoaod();
   renderTools();
 }
 
@@ -117,14 +112,14 @@ function closeModal() {
   $('html').toggleClass('overflow');
 }
 
-function renderCanvas() {
+function renderCanvasUpLoaod() {
   // debugger;
   var id = getMemeImgId();
   var canvas = document.getElementById('meme-canvas');
   var ctx = canvas.getContext('2d');
   var img = new Image();
   img.src = getImgById(id).url;
-  img.crossOrigin="anonymous";
+  img.crossOrigin = 'anonymous';
   img.onload = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var originalRatio = img.height / img.width;
@@ -154,9 +149,10 @@ function renderTools() {
   var strHtmls = memeLines.map(function(line, lineIdx) {
     return `<div class="tools-line-${lineIdx}">
               <input class="line-input-${lineIdx}" type="text" value="${line.txt}" onkeyup="memeLineTyped(event)">
-              <button class="btn btn-font-size-up-${lineIdx}" onclick="scaleFont(1, event)">+</button>
-              <button class="btn btn-font-size-down-${lineIdx}" onclick="scaleFont(-1, event)">-</button>
+              <button class="btn btn-font-size-up-${lineIdx}" onclick="scaleFont(1, event)">🗚</button>
+              <button class="btn btn-font-size-down-${lineIdx}" onclick="scaleFont(-1, event)">🗛</button>
               <button class="btn btn-toggle-shadow-${lineIdx}" onclick="onToggleShadow(event)">Shadow</button>
+              <span class="fas fa-palette"></span>
               <input class="jscolor color-input-${lineIdx}" value="${line.color}" onchange="onChangeFontColor(event)">
               <select class="font-menu-${lineIdx}" onchange="onFontChange(event)">
                   <option value="impact">Impact</option>
@@ -164,13 +160,18 @@ function renderTools() {
                   <option value="david">David</option>
                   <option value="miriam">Miriam</option>
               </select>
-              <button class="btn btn-delete-line-${lineIdx}" onclick="onDeleteLine(event)">X</button>
+              <button class="btn far fa-trash-alt btn-delete-line-${lineIdx}" onclick="onDeleteLine(event)"></button>
             </div>`;
   });
-  var generalTools = `<button class="btn add-line-btn" onclick="onAddLine()">add line</button>
+  var generalTools = `<button class="btn fas fa-plus add-line-btn" onclick="onAddLine()"></button>
                     <div class="done-btns">
-                        <button class="btn btn-download" href="#" download="my-meme.jpg"><a href="#" onclick="onDownloadClicked(this)">download</a></button>
-                        <button class="btn btn-share">share</button>
+                        <button class="btn btn-download" href="#" download="my-meme.jpg"><a href="#" class="fas fa-download" onclick="onDownloadClicked(this)"></a></button>
+                        <form class="share-form" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+    <input name="img" id="imgData" type="hidden"/>
+    <button class="btn fas fa-share-alt btn-share" type="submit"></button>
+  </form>
+  <div id="fb-root"></div>
+                    <div class="share-container"></div>
                     </div> `;
   $('.tools').html(strHtmls.join('') + generalTools);
   jscolor.installByClassName('jscolor');
@@ -193,9 +194,13 @@ function canvasMouseDown(ev) {
   });
   if (!currLine) {
     setCurrMoveLine(null);
-    return
+    return;
   }
-  setCurrMoveLine(lines.indexOf(currLine), canvasMouseX - currLine.cordX, canvasMouseY - currLine.cordY);
+  setCurrMoveLine(
+    lines.indexOf(currLine),
+    canvasMouseX - currLine.cordX,
+    canvasMouseY - currLine.cordY
+  );
   // console.log(currLine);
 }
 
@@ -207,28 +212,31 @@ function canvasMouseUp(ev) {
 
   var currLine = getCurrMoveLine();
   if (currLine) {
-    setLineCords(canvasMouseX - currLine.mouseDiffX, canvasMouseY - currLine.mouseDiffY);
-    renderCanvas();
+    setLineCords(
+      canvasMouseX - currLine.mouseDiffX,
+      canvasMouseY - currLine.mouseDiffY
+    );
+    renderCanvasUpLoaod();
   }
 }
 
 function onAddLine() {
   addLine();
   renderTools();
-  renderCanvas();
+  renderCanvasUpLoaod();
 }
 
 function memeLineTyped(ev) {
   var newText = ev.target.value;
   var inputIdx = ev.target.classList[0].slice(-1);
   setMemeLine(inputIdx, newText);
-  renderCanvas();
+  renderCanvasUpLoaod();
 }
 
 function scaleFont(diff, ev) {
   var inputIdx = ev.target.classList[1].slice(-1);
   changeLineSize(inputIdx, diff);
-  renderCanvas();
+  renderCanvasUpLoaod();
 }
 
 function onChangeFontColor(ev) {
@@ -237,26 +245,26 @@ function onChangeFontColor(ev) {
   console.log(inputIdx, newColor);
 
   changeFontColor(inputIdx, newColor);
-  renderCanvas();
+  renderCanvasUpLoaod();
 }
 
 function onFontChange(ev) {
   var inputIdx = ev.target.classList[0].slice(-1);
   var newFont = ev.target.value;
   changeFont(inputIdx, newFont);
-  renderCanvas();
+  renderCanvasUpLoaod();
 }
 
 function onToggleShadow(ev) {
   var lineIdx = ev.target.classList[1].slice(-1);
   toggleShdow(lineIdx);
-  renderCanvas();
+  renderCanvasUpLoaod();
 }
 
 function onDeleteLine(ev) {
   var lineIdx = ev.target.classList[1].slice(-1);
   deleteLine(lineIdx);
-  renderCanvas();
+  renderCanvasUpLoaod();
   renderTools();
 }
 
@@ -271,4 +279,3 @@ function sendMsg() {
 function onDownloadClicked(elLink) {
   downloadCanvasMeme(elLink);
 }
-
