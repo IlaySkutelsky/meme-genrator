@@ -320,6 +320,7 @@ header {
 
   .modal {
     flex-direction: column-reverse;
+    padding: 0px;
   }
   .tools {
     width: 500px;
