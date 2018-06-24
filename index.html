@@ -10,9 +10,12 @@
     <link rel="stylesheet" href="css/input-file-btn.css">
     <link rel="stylesheet" href="css/toggle-btn.css">
     <link rel="stylesheet" href="css/hex-grid-style.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/icon-meme.PNG">
     <link rel="stylesheet" href="css/social-media-icons.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="icon" href="img/icon-meme.PNG">
+
     <title>Meme Generator</title>
 </head>
 
@@ -38,16 +41,11 @@
     </header>
     <div id="container">
         <main class="container">
-
             <label class="get-start">Search by keyword ⇒</label>
             <input class="input-filter" list="keywords" name="keyword" placeholder="search" onchange="onTagClicked(this.value)">
             <datalist id="keywords">
             </datalist>
-            <!-- keep for Ex-9 and safari -->
             <label> or </label>
-            <select class="input-select" onchange="onTagClicked(this.value)">
-            </select>
-
             <input type="file" name="file-5[]" id="file-5" onchange="onFileInputChange(event)" class="inputfile inputfile-4" data-multiple-caption="{count} files selected"
                 multiple />
             <label for="file-5">
@@ -59,12 +57,10 @@
                 </figure>
                 <span>Choose a file&hellip;</span>
             </label>
-
             <div class="tags">
                 <ul class="keywords clean-list flex space-around">
                 </ul>
             </div>
-
             <div class="gallery">
             </div>
 

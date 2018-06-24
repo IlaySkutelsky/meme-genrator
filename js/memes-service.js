@@ -1,5 +1,4 @@
 'use strict';
-var gkerWord = 'All';
 
 var gImgs = [
   { id: 1, url: 'img/1.jpg', keywords: ['happy'] },
@@ -35,7 +34,7 @@ var gMeme = {
   selectedImgId: 5,
   lines: [
     {
-      txt: 'I never eat Falafel',
+      txt: 'I rock sprint 2 !',
       size: 50,
       align: 'left',
       color: 'ffffff',
@@ -50,9 +49,9 @@ var gMeme = {
 var gCurrLine = { lineIdx: 0 };
 
 function createKeywords() {
-  var localKeyword = loadFromStorage('gKerwords');
+  var localKeyword = loadFromStorage('gKeywords');
   if (localKeyword !== null) return localKeyword;
-  var kerwords = gImgs.reduce(function(acc, img) {
+  var keywords = gImgs.reduce(function(acc, img) {
     img.keywords.forEach(function(tag) {
       if (acc[tag]) {
         acc[tag] = acc[tag] + 1;
@@ -60,8 +59,8 @@ function createKeywords() {
     });
     return acc;
   }, {});
-  saveToStorage('gKerwords', kerwords);
-  return kerwords;
+  saveToStorage('gKeywords', keywords);
+  return keywords;
 }
 
 function getImgsForDisplay(strFliter) {
@@ -97,7 +96,7 @@ function updateTagRate(strFliter) {
   for (var key in gKeywords) {
     if (key === strFliter) gKeywords[key]++;
   }
-  saveToStorage('gKerwords', gKeywords);
+  saveToStorage('gKeywords', gKeywords);
 }
 
 function getMemeInfo(id) {

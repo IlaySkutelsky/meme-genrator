@@ -33,6 +33,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
 /* Helpers */
 
 .grid {
@@ -131,21 +132,18 @@ header {
 .nav ul li:hover {
   color: #8db38b;
 }
+
+/* main */
+
 .input-filter {
   margin: 20px 0 0 0;
   padding: 8px;
   border: none;
   border-bottom: 1px solid #ccc;
 }
-.input-select {
-  display: none;
-  margin: 20px 0 0 0;
-}
+
 .inputfile {
   display: none;
-  /* font-family: 'lato';
-  font-size: 14px;
-  color: blue; */
 }
 
 .gallery {
@@ -157,9 +155,6 @@ header {
 }
 .img-gallery {
   cursor: pointer;
-  /* clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
-  height: 100px;
-  width: 100px;
   opacity: 1;
   animation: setpicture 1.5s ease;
 }
@@ -186,16 +181,17 @@ header {
     left: 100%;
   }
 }
-.tags {
-  clear: both;
-}
+
 .tag-word {
   cursor: pointer;
   transition: 0.3s;
+  margin: 5px;
 }
 .tag-word:hover {
   text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.7);
 }
+
+/* about */
 
 .about {
   position: relative;
@@ -225,11 +221,13 @@ header {
   margin: 0px 5px 0 0;
 }
 
-.tag-word {
-  margin: 5px;
-}
-
 /* editor */
+
+.modal {
+  padding: 5px;
+  animation: openModaltool 0.8s ease;
+  align-items: flex-start;
+}
 
 .editor {
   position: absolute;
@@ -240,11 +238,6 @@ header {
   animation: openModaltool 1s ease;
 }
 
-.modal {
-  padding: 5px;
-  animation: openModaltool 0.8s ease;
-  align-items: flex-start;
-}
 @keyframes openModaltool {
   from {
     opacity: 0;
@@ -257,6 +250,8 @@ header {
     width: 100%;
   }
 }
+
+/* tools */
 
 .tools {
   width: 50%;
@@ -276,7 +271,7 @@ header {
   font-style: italic;
 }
 
-[class^='line-input'] {
+.line-input {
   width: 85%;
   padding: 5px;
   display: block;
@@ -313,7 +308,6 @@ header {
 }
 .done-btns {
   margin: 10px 0 0 0;
-  display: inline-block;
   float: right;
 }
 .done-btns .btn {
@@ -339,27 +333,7 @@ header {
   display: inline-block;
 }
 
-@media only screen and (max-width: 810px) {
-  .logo {
-    font-size: 20px;
-  }
-
-  html {
-    overflow-y: visible !important;
-  }
-
-  .modal {
-    flex-direction: column-reverse;
-    padding: 0px;
-  }
-  .tools {
-    width: 500px;
-    margin: 0 auto;
-  }
-  .canvas {
-    margin: 0 auto 2px auto;
-  }
-}
+/* contact */
 
 .contact {
   position: relative;
@@ -405,12 +379,38 @@ header {
 .social-icons {
   padding: 0;
 }
+
+/* footer */
 footer {
   position: relative;
   color: #f3f3ef;
   background-color: #4f4e5a;
   top: 50px;
   padding: 10px;
+}
+
+@media only screen and (max-width: 810px) {
+  html {
+    overflow-y: visible !important;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .modal {
+    flex-direction: column-reverse;
+    padding: 0px;
+  }
+
+  .canvas {
+    margin: 0 auto 2px auto;
+  }
+
+  .tools {
+    width: 500px;
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (max-width: 780px) {
@@ -420,17 +420,17 @@ footer {
   .tags {
     display: none;
   }
-  [class^='line-input'] {
+  .line-input {
     width: 49%;
   }
 }
 @media only screen and (max-width: 578px) {
-  .tools {
-    width: 100%;
-  }
   .get-start,
   .input-filter {
     margin: 10px;
+  }
+  .tools {
+    width: 100%;
   }
 }
 
@@ -464,14 +464,14 @@ footer {
   .about-us {
     flex-direction: column;
   }
-  .btn-back {
-    width: 100%;
-  }
   .contact,
   .about {
     height: auto;
   }
-  [class^='line-input'] {
+  .btn-back {
+    width: 100%;
+  }
+  .line-input {
     width: 90%;
   }
 }

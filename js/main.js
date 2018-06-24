@@ -5,9 +5,10 @@ function init() {
   var keywords = getkeywordsForDisplay();
   renderImgs(imgs);
   renderKeywords(keywords);
-  renderFilter(keywords);
   renderInput(keywords);
 }
+
+// ***************************************** render gallery and tags  ********************************************
 
 function renderImgs(imgs) {
   var strHTML = `<ul id="hexGrid">`;
@@ -39,15 +40,6 @@ function renderKeywords(keywords) {
   document.querySelector('.keywords').innerHTML = strHTML;
 }
 
-// keep for Ex-9 and safari
-function renderFilter(keywords) {
-  var strHTML = '<option>All</option>';
-  for (var key in keywords) {
-    strHTML += `<option >${key} </option>`;
-  }
-  document.querySelector('.input-select').innerHTML = strHTML;
-}
-
 function renderInput(keywords) {
   var strHTML = `<option value="All">`;
   for (var key in keywords) {
@@ -59,11 +51,11 @@ function onTagClicked(strTag) {
   var imgs = getImgsForDisplay(strTag);
   updateTagRate(strTag);
   document.querySelector('.input-filter').value = strTag;
-  document.querySelector('.input-select').value = strTag;
   renderImgs(imgs);
   var keywords = getkeywordsForDisplay();
   renderKeywords(keywords);
 }
+// ***************************************** nav bar  ****************************************************
 
 function OpenNavBtn() {
   var menu = document.querySelector('.nav');
@@ -74,6 +66,8 @@ function closeNavBtn() {
   var menu = document.querySelector('.nav');
   menu.classList.toggle('open');
 }
+
+// ***************************************** render meme on canvas  *****************************************
 
 function onFileInputChange(ev) {
   var canvas = document.getElementById('meme-canvas');
@@ -98,11 +92,13 @@ function onFileInputChange(ev) {
 
 function openModal(id) {
   setNewMeme(id);
+
   $('.editor').toggleClass('hidden');
   $('.container').toggleClass('hidden');
   $('.about').toggleClass('hidden');
   $('.contact').toggleClass('hidden');
   $('html').toggleClass('overflow');
+
   renderCanvas();
   renderTools();
 }
@@ -128,7 +124,6 @@ function renderCanvas() {
   var ctx = canvas.getContext('2d');
   var img = new Image();
 
-  //img.crossOrigin = 'anonymous';
   img.onload = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var originalRatio = img.height / img.width;
@@ -315,6 +310,11 @@ function onDeleteLine(ev) {
   renderTools();
 }
 
+function onDownloadClicked(elLink) {
+  downloadCanvasMeme(elLink);
+}
+
+// ***************************************** contact us send mail  *****************************************
 function sendMsg() {
   var msgSubject = $('.msg-subject').val();
   var msgBody = $('.msg-body').val();
@@ -322,7 +322,4 @@ function sendMsg() {
             https://mail.google.com/mail/?view=cm&fs=1&to=ilay.skutelsky@gmail.com,nuritlh@gmail.com&su=${msgSubject}&body=${msgBody}
                  `;
   window.open(msgUrl, '_blank');
-}
-function onDownloadClicked(elLink) {
-  downloadCanvasMeme(elLink);
 }
