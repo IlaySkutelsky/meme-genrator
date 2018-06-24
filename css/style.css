@@ -259,12 +259,13 @@ header {
 }
 
 .tools {
+  width: 50%;
   background-color: #4f4e4e;
   padding: 15px;
   margin: 0 5px 30px 0;
 }
 
-.tools-line>select {
+.tools-line > select {
   background-color: #8db38b;
   width: 67px;
   height: 30px;
@@ -276,7 +277,7 @@ header {
 }
 
 [class^='line-input'] {
-  width: 50%;
+  width: 85%;
   padding: 5px;
   display: block;
   margin: 2px;
@@ -300,10 +301,10 @@ header {
   width: 30px;
 }
 
-.add-line-btn, .btn-delete-line {
-    width: 67px;
+.add-line-btn,
+.btn-delete-line {
+  width: 67px;
   background-color: #d2ab99;
-
 }
 
 .edit-lines {
@@ -419,6 +420,9 @@ footer {
   .tags {
     display: none;
   }
+  [class^='line-input'] {
+    width: 49%;
+  }
 }
 @media only screen and (max-width: 578px) {
   .tools {
@@ -466,5 +470,8 @@ footer {
   .contact,
   .about {
     height: auto;
+  }
+  [class^='line-input'] {
+    width: 90%;
   }
 }
