@@ -169,23 +169,32 @@ function renderTools() {
               <input class="line-input" type="text" value="${
                 currLine.txt
               }" onkeyup="memeLineTyped(event)">
-              <button class="btn btn-font-size-up" onclick="scaleFont(1, event)">&#128474;</button>
-              <button class="btn btn-font-size-down" onclick="scaleFont(-1, event)">&#128475;</button>
-              <button class="btn btn-toggle-shadow" onclick="onToggleShadow(event)">Shadow</button>
+              <button class="btn btn-font-size-up fas fa-plus" onclick="scaleFont(1, event)"></button>
+              <button class="btn btn-font-size-down fas fa-minus" onclick="scaleFont(-1, event)"></button>
               <span class="fas fa-palette"></span>
               <input class="jscolor color-input" value="${
                 currLine.color
               }" onchange="onChangeFontColor(event)">
               <select class="font-menu" onchange="onFontChange(event)">
-                  <option value="impact">Impact</option>
-                  <option value="arial">Arial</option>
-                  <option value="david">David</option>
-                  <option value="miriam">Miriam</option>
+              <option value="impact">Impact</option>
+              <option value="arial">Arial</option>
+              <option value="david">David</option>
+              <option value="miriam">Miriam</option>
               </select>
-            </div>`;
-  var generalTools = `<button class="btn fas fa-plus add-line-btn" onclick="onAddLine()"></button>
-                      <button class="btn far fa-trash-alt btn-delete-line" onclick="onDeleteLine(event)"></button>
-                    <div class="done-btns">
+              <ul class="tg-list clean-list">
+              <li class="tg-list-item flex-center">
+              <span>shadow</span>
+              <input class="tgl tgl-flat" id="cb4" type="checkbox" onchange="onToggleShadow(event)"/>
+              <label class="tgl-btn" for="cb4"></label>
+            </li>
+            </ul>
+              
+              </div>`;
+  var generalTools = `<div class="edit-lines">
+                      <button class="add-line-btn btn" onclick="onAddLine()">Add line</button>
+                      <button class="btn-delete-line btn" onclick="onDeleteLine(event)">Del line</button>
+                      </div>
+                      <div class="done-btns">
                         <button class="btn btn-download" href="#" download="my-meme.jpg"><a href="#" class="fas fa-download" onclick="onDownloadClicked(this)"></a></button>
                         <form class="share-form" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
     <input name="img" id="imgData" type="hidden"/>

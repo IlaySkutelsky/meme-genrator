@@ -87,6 +87,7 @@ a {
 }
 
 .btn {
+  height: 30px;
   cursor: pointer;
   background-color: #8db38b;
   border: none;
@@ -96,7 +97,7 @@ a {
   display: inline-block;
   padding: 5px;
   border-radius: 3px;
-  margin: 5px;
+  margin: 2px;
 }
 
 /* header */
@@ -265,18 +266,26 @@ header {
 
 .tools-line>select {
   background-color: #8db38b;
-  padding: 1px;
+  width: 67px;
+  height: 30px;
   border-radius: 3px;
+}
+.tools-line ul li span {
+  margin: 0 4px 0 0;
+  font-style: italic;
 }
 
 [class^='line-input'] {
-  width: 100%;
+  width: 50%;
+  padding: 5px;
+  display: block;
+  margin: 2px;
 }
 
 .jscolor {
   width: 5em;
   border-radius: 5px;
-  padding: 1px;
+  padding: 5px;
 }
 
 .btn-back {
@@ -287,16 +296,27 @@ header {
 }
 
 [class*='btn-font-size'],
-[class*='btn-delete'],
 .btn-back {
-  width: 25px;
-  height: 25px;
+  width: 30px;
 }
 
+.add-line-btn, .btn-delete-line {
+    width: 67px;
+  background-color: #d2ab99;
+
+}
+
+.edit-lines {
+  margin: 10px 0 0 0;
+  display: inline-block;
+}
 .done-btns {
-  margin: 20px 0 0 0;
+  margin: 10px 0 0 0;
+  display: inline-block;
+  float: right;
 }
 .done-btns .btn {
+  width: 30px;
   background-color: #d2ab99;
 }
 
@@ -333,10 +353,10 @@ header {
   }
   .tools {
     width: 500px;
-    margin: 0 auto 2px auto;
+    margin: 0 auto;
   }
   .canvas {
-    margin: 0 auto;
+    margin: 0 auto 2px auto;
   }
 }
 
