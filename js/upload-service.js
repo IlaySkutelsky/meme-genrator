@@ -1,11 +1,11 @@
-gUploadedImg = {};
+imgSrc = null;
 
 function setUploadedImgSrc(src) {
-  gUploadedImg.src = src;
+  imgSrc = src;
 }
 
 function getUploadedImgSrc() {
-  return gUploadedImg.src;
+  return imgSrc;
 }
 
 // on submit call to this function

@@ -92,6 +92,7 @@ function onFileInputChange(ev) {
     };
   };
   reader.readAsDataURL(ev.target.files[0]);
+
   openModal(999);
 }
 
@@ -115,19 +116,15 @@ function closeModal() {
 
 function renderCanvas() {
   var canvas = document.getElementById('meme-canvas');
-  var body = document.querySelector('body')
+  var body = document.querySelector('body');
   if (body.offsetWidth < 500) {
-    canvas.width = body.offsetWidth
+    canvas.width = body.offsetWidth;
   }
   var id = getMemeImgId();
   var ctx = canvas.getContext('2d');
   var img = new Image();
-  if (id !== 999) {
-    img.src = getImgById(id).url;
-  } else {
-    img.src = getUploadedImgSrc();
-  }
-  img.crossOrigin = 'anonymous';
+
+  //img.crossOrigin = 'anonymous';
   img.onload = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var originalRatio = img.height / img.width;
@@ -152,19 +149,29 @@ function renderCanvas() {
       ctx.strokeText(line.txt, line.cordX, line.cordY);
     });
   };
+
+  if (id !== 999) {
+    img.src = getImgById(id).url;
+  } else {
+    img.src = getUploadedImgSrc();
+  }
 }
 
 function renderTools() {
-  var lines = getMemeLines()
-  var currLine = lines[getCurrLineIdx()]
-  
+  var lines = getMemeLines();
+  var currLine = lines[getCurrLineIdx()];
+
   var strHtml = `<div class="tools-line">
-              <input class="line-input" type="text" value="${currLine.txt}" onkeyup="memeLineTyped(event)">
+              <input class="line-input" type="text" value="${
+                currLine.txt
+              }" onkeyup="memeLineTyped(event)">
               <button class="btn btn-font-size-up" onclick="scaleFont(1, event)">&#128474;</button>
               <button class="btn btn-font-size-down" onclick="scaleFont(-1, event)">&#128475;</button>
               <button class="btn btn-toggle-shadow" onclick="onToggleShadow(event)">Shadow</button>
               <span class="fas fa-palette"></span>
-              <input class="jscolor color-input" value="${currLine.color}" onchange="onChangeFontColor(event)">
+              <input class="jscolor color-input" value="${
+                currLine.color
+              }" onchange="onChangeFontColor(event)">
               <select class="font-menu" onchange="onFontChange(event)">
                   <option value="impact">Impact</option>
                   <option value="arial">Arial</option>
@@ -210,7 +217,7 @@ function canvasMouseDown(ev) {
     lines.indexOf(currLine),
     canvasMouseX - currLine.cordX,
     canvasMouseY - currLine.cordY
-  )
+  );
   canvas.onmousemove = moveLine;
   renderTools();
 }
@@ -238,18 +245,18 @@ function moveLine(ev) {
   var canvasMouseX = ev.clientX - canvasRect.left;
   var canvasMouseY = ev.clientY - canvasRect.top;
 
-  var currLine = getCurrLine()
+  var currLine = getCurrLine();
 
   setLineCords(
     canvasMouseX - currLine.mouseDiffX,
     canvasMouseY - currLine.mouseDiffY
   );
-  renderCanvas()
+  renderCanvas();
 }
 
 function onAddLine() {
-  var lines = getMemeLines()
-  setCurrLine(lines.length)
+  var lines = getMemeLines();
+  setCurrLine(lines.length);
   addLine();
   renderTools();
   renderCanvas();
@@ -257,7 +264,7 @@ function onAddLine() {
 
 function memeLineTyped(ev) {
   var newText = ev.target.value;
-  var inputIdx = getCurrLineIdx()
+  var inputIdx = getCurrLineIdx();
   setMemeLine(inputIdx, newText);
   renderCanvas();
 }
