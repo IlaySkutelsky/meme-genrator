@@ -15,7 +15,7 @@
 </head>
 
 <body onload="init()">
-    <header class="flex space-between align-center">
+    <header class="flex space-evenly align-center">
         <h1 class="logo">Meme Generator</h1>
         <label class="btn-nav" onclick="OpenNavBtn() ">
             <i class="fas fa-bars"></i>
@@ -38,8 +38,8 @@
         <main class="container">
 
             <label>Get started ⇒</label>
-            <input class="input-filter" list="browsers" name="browser" onchange="onTagClicked(this.value)">
-            <datalist id="browsers">
+            <input class="input-filter" list="keywords" name="keyword" onchange="onTagClicked(this.value)">
+            <datalist id="keywords">
             </datalist>
             <!-- keep for Ex-9 and safari -->
             <select class="input-select" onchange="onTagClicked(this.value)">
@@ -121,6 +121,7 @@
 
 
     <script src="js/upload-service.js"></script>
+    <script src="lib/crawler.js"></script>
     <script src="lib/jscolor-2.0.5/jscolor.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="js/utils.js"></script>

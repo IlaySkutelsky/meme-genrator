@@ -5,6 +5,7 @@ function init() {
   var keywords = getkeywordsForDisplay();
   renderImgs(imgs);
   renderKeywords(keywords);
+  // renderKeywords2(keywords);
   renderFilter(keywords);
   renderInput(keywords);
 }
@@ -53,7 +54,7 @@ function renderInput(keywords) {
   for (var key in keywords) {
     strHTML += `<option value="${key}">`;
   }
-  document.querySelector('#browsers').innerHTML = strHTML;
+  document.querySelector('#keywords').innerHTML = strHTML;
 }
 function onTagClicked(strTag) {
   var imgs = getImgsForDisplay(strTag);
@@ -81,13 +82,16 @@ function onFileInputChange(ev) {
 
   var reader = new FileReader();
   reader.onload = function(event) {
-    console.log(event);
+    setUploadedImgSrc(event.target.result)
     
     var img = new Image();
-    img.onload = function() {
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
     img.src = event.target.result;
+    img.onload = function() {
+      var originalRatio = img.height / img.width;
+      canvas.height = canvas.width * originalRatio;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.width * originalRatio);
+      // ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
   };
   reader.readAsDataURL(ev.target.files[0]);
   openModal(999);
@@ -100,7 +104,7 @@ function openModal(id) {
   $('.about').toggleClass('hidden');
   $('.contact').toggleClass('hidden');
   $('html').toggleClass('overflow');
-  renderCanvasUpLoaod();
+  renderCanvas();
   renderTools();
 }
 
@@ -112,21 +116,27 @@ function closeModal() {
   $('html').toggleClass('overflow');
 }
 
-function renderCanvasUpLoaod() {
+function renderCanvas() {
   // debugger;
   var id = getMemeImgId();
   var canvas = document.getElementById('meme-canvas');
   var ctx = canvas.getContext('2d');
   var img = new Image();
-  img.src = getImgById(id).url;
+  if (id !== 999) {
+    img.src = getImgById(id).url;
+  } else {
+    img.src = getUploadedImgSrc()
+  }
   img.crossOrigin = 'anonymous';
   img.onload = function() {
+    console.log('i got here');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     var originalRatio = img.height / img.width;
     canvas.height = canvas.width * originalRatio;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.width * originalRatio);
 
     var meme = getMemeInfo();
+    
     meme.lines.forEach(function(line) {
       ctx.fillStyle = '#' + line.color;
       ctx.font = `${line.size}px ${line.font}`;
@@ -216,27 +226,27 @@ function canvasMouseUp(ev) {
       canvasMouseX - currLine.mouseDiffX,
       canvasMouseY - currLine.mouseDiffY
     );
-    renderCanvasUpLoaod();
+    renderCanvas();
   }
 }
 
 function onAddLine() {
   addLine();
   renderTools();
-  renderCanvasUpLoaod();
+  renderCanvas();
 }
 
 function memeLineTyped(ev) {
   var newText = ev.target.value;
   var inputIdx = ev.target.classList[0].slice(-1);
   setMemeLine(inputIdx, newText);
-  renderCanvasUpLoaod();
+  renderCanvas();
 }
 
 function scaleFont(diff, ev) {
   var inputIdx = ev.target.classList[1].slice(-1);
   changeLineSize(inputIdx, diff);
-  renderCanvasUpLoaod();
+  renderCanvas();
 }
 
 function onChangeFontColor(ev) {
@@ -245,26 +255,26 @@ function onChangeFontColor(ev) {
   console.log(inputIdx, newColor);
 
   changeFontColor(inputIdx, newColor);
-  renderCanvasUpLoaod();
+  renderCanvas();
 }
 
 function onFontChange(ev) {
   var inputIdx = ev.target.classList[0].slice(-1);
   var newFont = ev.target.value;
   changeFont(inputIdx, newFont);
-  renderCanvasUpLoaod();
+  renderCanvas();
 }
 
 function onToggleShadow(ev) {
   var lineIdx = ev.target.classList[1].slice(-1);
   toggleShdow(lineIdx);
-  renderCanvasUpLoaod();
+  renderCanvas();
 }
 
 function onDeleteLine(ev) {
   var lineIdx = ev.target.classList[1].slice(-1);
   deleteLine(lineIdx);
-  renderCanvasUpLoaod();
+  renderCanvas();
   renderTools();
 }
 

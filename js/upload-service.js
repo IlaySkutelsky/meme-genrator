@@ -1,3 +1,13 @@
+gUploadedImg = {}
+
+function setUploadedImgSrc(src) {
+  gUploadedImg.src = src
+}
+
+function getUploadedImgSrc() {
+  return gUploadedImg.src
+}
+
 // on submit call to this function
 function uploadImg(elForm, ev) {
   var canvas = document.getElementById('meme-canvas');
