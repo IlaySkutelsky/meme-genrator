@@ -22,7 +22,7 @@ function uploadImg(elForm, ev) {
 
     uploadedImgUrl = encodeURIComponent(uploadedImgUrl);
     document.querySelector('.share-container').innerHTML = `
-          <a class="w-inline-block fa fa-facebook" href="http://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">  
+          <a class="w-inline-block fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">  
           </a>`;
   }
 
@@ -32,7 +32,7 @@ function uploadImg(elForm, ev) {
 function doUploadImg(elForm, onSuccess) {
   var formData = new FormData(elForm);
 
-  fetch('http://ca-upload.com/here/upload.php', {
+  fetch('https://ca-upload.com/here/upload.php', {
     method: 'POST',
     body: formData
   })
@@ -53,6 +53,6 @@ function doUploadImg(elForm, onSuccess) {
   js = d.createElement(s);
   js.id = id;
   js.src =
-    'http://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v3.0&appId=807866106076694&autoLogAppEvents=1';
+    'https://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v3.0&appId=807866106076694&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 })(document, 'script', 'facebook-jssdk');
