@@ -47,7 +47,7 @@ var gMeme = {
   ]
 };
 
-var gCurrMoveLine = {};
+var gCurrLine = { lineIdx: 0 };
 
 function createKeywords() {
   var localKeyword = loadFromStorage('gKerwords');
@@ -116,19 +116,23 @@ function setNewMeme(id) {
   gMeme.selectedImgId = id;
 }
 
-function setCurrMoveLine(lineIdx, mouseDiffX, mouseDiffY) {
-  gCurrMoveLine.lineIdx = lineIdx;
-  gCurrMoveLine.mouseDiffX = mouseDiffX;
-  gCurrMoveLine.mouseDiffY = mouseDiffY;
+function setCurrLine(lineIdx, mouseDiffX, mouseDiffY) {
+  gCurrLine.lineIdx = lineIdx;
+  gCurrLine.mouseDiffX = mouseDiffX;
+  gCurrLine.mouseDiffY = mouseDiffY;
 }
 
-function getCurrMoveLine() {
-  return gCurrMoveLine;
+function getCurrLine() {
+  return gCurrLine;
+}
+
+function getCurrLineIdx() {
+  return gCurrLine.lineIdx;
 }
 
 function setLineCords(newX, newY) {
-  gMeme.lines[gCurrMoveLine.lineIdx].cordX = newX;
-  gMeme.lines[gCurrMoveLine.lineIdx].cordY = newY;
+  gMeme.lines[gCurrLine.lineIdx].cordX = newX;
+  gMeme.lines[gCurrLine.lineIdx].cordY = newY;
 }
 
 function addLine() {
@@ -139,7 +143,7 @@ function addLine() {
     color: 'ffffff',
     font: 'impact',
     cordX: 50,
-    cordY: gMeme.lines[gMeme.lines.length - 1].cordY + 50
+    cordY: gMeme.lines[getCurrLineIdx() - 1].cordY + 50
   };
   gMeme.lines.push(newLine);
 }
