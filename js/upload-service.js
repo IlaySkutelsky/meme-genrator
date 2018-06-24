@@ -1,11 +1,11 @@
-gUploadedImg = {}
+gUploadedImg = {};
 
 function setUploadedImgSrc(src) {
-  gUploadedImg.src = src
+  gUploadedImg.src = src;
 }
 
 function getUploadedImgSrc() {
-  return gUploadedImg.src
+  return gUploadedImg.src;
 }
 
 // on submit call to this function
@@ -33,7 +33,7 @@ function uploadImg(elForm, ev) {
 function doUploadImg(elForm, onSuccess) {
   var formData = new FormData(elForm);
 
-  fetch('http://ca-upload.com/here/upload.php', {
+  fetch('https://ca-upload.com/here/upload.php', {
     method: 'POST',
     body: formData
   })
