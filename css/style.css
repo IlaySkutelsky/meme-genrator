@@ -265,7 +265,7 @@ header {
 
 .tools-line>select {
   background-color: #8db38b;
-  padding: 4px;
+  padding: 1px;
   border-radius: 3px;
 }
 
@@ -275,6 +275,8 @@ header {
 
 .jscolor {
   width: 5em;
+  border-radius: 5px;
+  padding: 1px;
 }
 
 .btn-back {
@@ -331,7 +333,7 @@ header {
   }
   .tools {
     width: 500px;
-    margin: 0 auto;
+    margin: 0 auto 2px auto;
   }
   .canvas {
     margin: 0 auto;
