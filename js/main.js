@@ -107,6 +107,10 @@ function openModal(id) {
 }
 
 function closeModal() {
+  var canvas = document.getElementById('meme-canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   $('.editor').toggleClass('hidden');
   $('.container').toggleClass('hidden');
   $('.about').toggleClass('hidden');
@@ -171,9 +175,9 @@ function renderTools() {
                   <option value="david">David</option>
                   <option value="miriam">Miriam</option>
               </select>
-              <button class="btn far fa-trash-alt btn-delete-line" onclick="onDeleteLine(event)"></button>
             </div>`;
   var generalTools = `<button class="btn fas fa-plus add-line-btn" onclick="onAddLine()"></button>
+                      <button class="btn far fa-trash-alt btn-delete-line" onclick="onDeleteLine(event)"></button>
                     <div class="done-btns">
                         <button class="btn btn-download" href="#" download="my-meme.jpg"><a href="#" class="fas fa-download" onclick="onDownloadClicked(this)"></a></button>
                         <form class="share-form" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
