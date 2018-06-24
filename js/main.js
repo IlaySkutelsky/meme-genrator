@@ -26,6 +26,24 @@ function renderImgs(imgs) {
   document.querySelector('.gallery').innerHTML = strHTML;
 }
 
+// function renderKeywords(keywords) {
+//   var strHTML = '';
+//   for (var key in keywords) {
+//     var fontsize = getFontSize(key);
+//     strHTML += `<li class="tag-word" style="font-size: ${fontsize *
+//       2}px" onclick="onTagClicked('${key}')">
+//     ${key}
+// </li>`;
+//   }
+
+//   var elcrawler = document.querySelector('.marquee0');
+//   console.log(elcrawler);
+  
+//   elcrawler.onload = function() {
+//     elcrawler.innerHTML = strHTML;
+//   }
+// }
+
 function renderKeywords(keywords) {
   var strHTML = '';
   for (var key in keywords) {
@@ -115,8 +133,8 @@ function closeModal() {
 
 function renderCanvas() {
   var canvas = document.getElementById('meme-canvas');
-  if (window.outerWidth < 500) {
-    canvas.width = window.outerWidth    
+  if (body.offsetWidth < 500) {
+    canvas.width = body.offsetWidth
   }
   var id = getMemeImgId();
   var ctx = canvas.getContext('2d');
@@ -305,3 +323,17 @@ function sendMsg() {
 function onDownloadClicked(elLink) {
   downloadCanvasMeme(elLink);
 }
+
+// marqueeInit({
+// 	uniqueid: 'mycrawler',
+// 	style: {
+// 		'padding': '5px',
+// 		'width': '100%',
+// 	},
+// 	inc: 1, //speed - pixel increment for each iteration of this marquee's movement
+// 	mouse: 'cursor driven', //mouseover behavior ('pause' 'cursor driven' or false)
+// 	moveatleast: 2,
+// 	neutral: 150,
+// 	persist: true,
+// 	savedirection: true
+// });
